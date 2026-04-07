@@ -16,11 +16,11 @@ apis:
     baseURL: https://api.telefono.example.com/v1
     version: '1.0'
     tags:
-      - phone validation
-      - telecommunications
-      - carrier lookup
-      - number verification
+      - Carrier Lookup
+      - Number Verification
+      - Phone Validation
       - SMS
+      - Telecommunications
     properties:
       - type: Documentation
         url: https://telefono.example.com/docs
@@ -56,7 +56,6 @@ maintainers:
     email: api@telefono.example.com
     twitter: '@telefonoapi'
 tags:
-  - telecommunications
-  - phone validation
-  - carrier lookup
-  - API
+  - Carrier Lookup
+  - Phone Validation
+  - Telecommunications

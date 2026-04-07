@@ -1,59 +1,62 @@
 name: Telefono
-description: A comprehensive phone number validation and information API
+description: >-
+  A comprehensive phone number validation and information API.
 image: https://telefono.example.com/logo.png
 created: '2024-01-15'
 modified: '2026-03-16'
 url: https://telefono.example.com/apis.json
 specificationVersion: '0.18'
 apis:
-- name: Telefono Phone Validation API
-  description: Validates phone numbers, provides carrier information, line type, and geographical data
-  image: https://telefono.example.com/api-logo.png
-  humanURL: https://telefono.example.com
-  baseURL: https://api.telefono.example.com/v1
-  version: '1.0'
-  tags:
-  - phone validation
-  - telecommunications
-  - carrier lookup
-  - number verification
-  - SMS
-  properties:
-  - type: Documentation
-    url: https://telefono.example.com/docs
-  - type: OpenAPI
-    url: https://api.telefono.example.com/openapi.json
-  - type: Authentication
-    url: https://telefono.example.com/docs/authentication
-  - type: SignUp
-    url: https://telefono.example.com/signup
-  - type: Pricing
-    url: https://telefono.example.com/pricing
-  - type: TermsOfService
-    url: https://telefono.example.com/terms
-  - type: PrivacyPolicy
-    url: https://telefono.example.com/privacy
-  - type: RateLimits
-    url: https://telefono.example.com/docs/rate-limits
-  - type: StatusPage
-    url: https://status.telefono.example.com
-  - type: Support
-    url: https://telefono.example.com/support
-  - type: SDKs
-    url: https://telefono.example.com/sdks
-  contact:
-  - type: Email
-    url: support@telefono.example.com
-  - type: Twitter
-    url: https://twitter.com/telefonoapi
-  - type: GitHub
-    url: https://github.com/telefono
+  - name: Telefono Phone Validation API
+    description: >-
+      Validates phone numbers, provides carrier information, line type, and geographical
+      data.
+    image: https://telefono.example.com/api-logo.png
+    humanURL: https://telefono.example.com
+    baseURL: https://api.telefono.example.com/v1
+    version: '1.0'
+    tags:
+      - phone validation
+      - telecommunications
+      - carrier lookup
+      - number verification
+      - SMS
+    properties:
+      - type: Documentation
+        url: https://telefono.example.com/docs
+      - type: OpenAPI
+        url: https://api.telefono.example.com/openapi.json
+      - type: Authentication
+        url: https://telefono.example.com/docs/authentication
+      - type: SignUp
+        url: https://telefono.example.com/signup
+      - type: Pricing
+        url: https://telefono.example.com/pricing
+      - type: TermsOfService
+        url: https://telefono.example.com/terms
+      - type: PrivacyPolicy
+        url: https://telefono.example.com/privacy
+      - type: RateLimits
+        url: https://telefono.example.com/docs/rate-limits
+      - type: StatusPage
+        url: https://status.telefono.example.com
+      - type: Support
+        url: https://telefono.example.com/support
+      - type: SDKs
+        url: https://telefono.example.com/sdks
+    contact:
+      - type: Email
+        url: support@telefono.example.com
+      - type: Twitter
+        url: https://twitter.com/telefonoapi
+      - type: GitHub
+        url: https://github.com/telefono
 maintainers:
-- name: Telefono Team
-  email: api@telefono.example.com
-  twitter: '@telefonoapi'
+  - name: Telefono Team
+    email: api@telefono.example.com
+    twitter: '@telefonoapi'
 tags:
-- telecommunications
-- phone validation
-- carrier lookup
-- API
+  - telecommunications
+  - phone validation
+  - carrier lookup
+  - API

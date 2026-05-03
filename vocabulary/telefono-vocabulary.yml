@@ -1,0 +1,131 @@
+name: Telefono Vocabulary
+description: >-
+  Vocabulary and taxonomy for the Telefono phone number intelligence platform
+  covering validation, carrier lookup, number formatting, and data enrichment concepts.
+version: '1.0'
+created: '2026-05-03'
+modified: '2026-05-03'
+url: https://developers.telefono.com
+
+categories:
+  - name: Number Validation
+    terms:
+      - term: Phone Number Validation
+        definition: The process of verifying that a phone number is correctly formatted, numerically valid, and potentially reachable.
+        tags: [Validation, Core]
+      - term: E.164
+        definition: >-
+          The international standard format for phone numbers defined by ITU-T.
+          Numbers start with a + followed by country code and subscriber number (e.g., +14155552671). Maximum 15 digits.
+        tags: [Validation, Standard, Format]
+      - term: Number Type
+        definition: >-
+          Classification of a phone number: mobile, landline, VoIP, toll-free,
+          premium-rate, shared-cost, or unknown.
+        tags: [Validation]
+      - term: Virtual Number
+        definition: >-
+          A phone number not directly tied to a physical telephone line. Includes
+          VoIP numbers, online SMS services, and temporary number providers.
+          Often used for fraud and bypass.
+        tags: [Validation, Fraud]
+      - term: Reachability
+        definition: >-
+          Assessment of whether a phone number is likely to be reachable.
+          Values: reachable, unreachable, unknown, or risk.
+        tags: [Validation]
+      - term: Batch Validation
+        definition: >-
+          Validating multiple phone numbers in a single API request (up to 100).
+          More efficient and cost-effective than individual lookups for bulk data.
+        tags: [Validation]
+
+  - name: Carrier Information
+    terms:
+      - term: Carrier Lookup
+        definition: >-
+          Querying the carrier or network operator associated with a phone number.
+          Requires knowledge of number portability to be accurate.
+        tags: [Carrier]
+      - term: MCC
+        definition: >-
+          Mobile Country Code — a 3-digit code identifying the country of the
+          mobile network operator (e.g., 310 for United States).
+        tags: [Carrier, Standard]
+      - term: MNC
+        definition: >-
+          Mobile Network Code — a 2-3 digit code identifying the specific mobile
+          network within a country (e.g., 410 for AT&T in the US).
+        tags: [Carrier, Standard]
+      - term: Network Type
+        definition: >-
+          The mobile network generation: GSM (2G), UMTS (3G), LTE (4G), NR5G (5G),
+          or CDMA. Affects capabilities like VoLTE calling.
+        tags: [Carrier]
+      - term: HLR Lookup
+        definition: >-
+          Home Location Register lookup — a real-time query to the carrier's network
+          to determine if a mobile number is active and currently reachable.
+          More accurate but higher latency and cost than static database lookup.
+        tags: [Carrier]
+      - term: Number Portability
+        definition: >-
+          The ability for subscribers to keep their phone number when switching carriers.
+          Numbers may be ported, making the original carrier different from the current one.
+        tags: [Carrier]
+      - term: Roaming
+        definition: >-
+          A subscriber using their phone on a network other than their home carrier,
+          typically while traveling internationally.
+        tags: [Carrier]
+
+  - name: Number Formats
+    terms:
+      - term: National Format
+        definition: >-
+          Phone number formatted according to local national conventions
+          (e.g., (415) 555-2671 for US numbers).
+        tags: [Format]
+      - term: International Format
+        definition: >-
+          Phone number in full international dialing format including country code
+          and formatting separators (e.g., +1 415-555-2671).
+        tags: [Format]
+      - term: RFC 3966
+        definition: >-
+          IETF standard URI format for telephone numbers (e.g., tel:+1-415-555-2671).
+          Used in HTML href attributes for click-to-call functionality.
+        tags: [Format, Standard]
+      - term: Calling Code
+        definition: >-
+          The numeric portion of the international dialing prefix.
+          E.g., 1 for North America, 44 for UK, 49 for Germany.
+        tags: [Format]
+      - term: Country Prefix
+        definition: >-
+          The international dialing prefix including the + sign.
+          E.g., +1, +44, +49.
+        tags: [Format]
+
+  - name: Use Cases
+    terms:
+      - term: Fraud Prevention
+        definition: >-
+          Using phone number intelligence to detect disposable, virtual, or
+          high-risk numbers during user registration or transactions.
+        tags: [Use Case, Security]
+      - term: Data Enrichment
+        definition: >-
+          Enhancing contact records with carrier, line type, country, and
+          reachability information to improve CRM data quality.
+        tags: [Use Case, Data]
+      - term: SMS Deliverability
+        definition: >-
+          Ensuring SMS messages are sent only to valid mobile numbers capable of
+          receiving SMS, improving campaign efficiency and reducing costs.
+        tags: [Use Case, SMS]
+      - term: User Verification
+        definition: >-
+          Validating phone numbers before sending OTP SMS codes to prevent
+          sending to invalid or unreachable numbers.
+        tags: [Use Case, Security]

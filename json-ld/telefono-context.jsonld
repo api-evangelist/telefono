@@ -1,0 +1,86 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "telefono": "https://developers.telefono.com/schema/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "ValidationResult": "telefono:ValidationResult",
+    "CarrierResult": "telefono:CarrierResult",
+    "FormatResult": "telefono:FormatResult",
+    "PhoneNumber": "schema:ContactPoint",
+
+    "number": {
+      "@id": "schema:telephone",
+      "@type": "xsd:string"
+    },
+    "valid": {
+      "@id": "telefono:isValid",
+      "@type": "xsd:boolean"
+    },
+    "number_type": {
+      "@id": "telefono:numberType",
+      "@type": "xsd:string"
+    },
+    "e164_format": {
+      "@id": "telefono:e164Format",
+      "@type": "xsd:string"
+    },
+    "national_format": {
+      "@id": "telefono:nationalFormat",
+      "@type": "xsd:string"
+    },
+    "international_format": {
+      "@id": "telefono:internationalFormat",
+      "@type": "xsd:string"
+    },
+    "country_code": {
+      "@id": "schema:addressCountry",
+      "@type": "xsd:string"
+    },
+    "country_name": {
+      "@id": "schema:addressCountry",
+      "@type": "xsd:string"
+    },
+    "carrier": {
+      "@id": "telefono:carrier",
+      "@type": "xsd:string"
+    },
+    "carrier_name": {
+      "@id": "telefono:carrierName",
+      "@type": "xsd:string"
+    },
+    "mcc": {
+      "@id": "telefono:mobileCountryCode",
+      "@type": "xsd:string"
+    },
+    "mnc": {
+      "@id": "telefono:mobileNetworkCode",
+      "@type": "xsd:string"
+    },
+    "network_type": {
+      "@id": "telefono:networkType",
+      "@type": "xsd:string"
+    },
+    "is_virtual": {
+      "@id": "telefono:isVirtual",
+      "@type": "xsd:boolean"
+    },
+    "is_ported": {
+      "@id": "telefono:isPorted",
+      "@type": "xsd:boolean"
+    },
+    "is_reachable": {
+      "@id": "telefono:isReachable",
+      "@type": "xsd:string"
+    },
+    "calling_code": {
+      "@id": "telefono:callingCode",
+      "@type": "xsd:integer"
+    },
+    "roaming": {
+      "@id": "telefono:isRoaming",
+      "@type": "xsd:boolean"
+    }
+  }
+}

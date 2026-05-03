@@ -1,0 +1,25 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.telefono.com/v1/validate?number=%2B14155552671",
+    "headers": {
+      "X-API-Key": "YOUR_API_KEY"
+    }
+  },
+  "response": {
+    "number": "+14155552671",
+    "valid": true,
+    "number_type": "mobile",
+    "e164_format": "+14155552671",
+    "national_format": "(415) 555-2671",
+    "international_format": "+1 415-555-2671",
+    "country_code": "US",
+    "country_name": "United States",
+    "country_prefix": "+1",
+    "carrier": "AT&T Mobility",
+    "line_type": "mobile",
+    "is_reachable": "reachable",
+    "is_virtual": false,
+    "calling_code": 1
+  }
+}

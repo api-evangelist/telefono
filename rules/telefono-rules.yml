@@ -1,0 +1,92 @@
+extends: spectral:oas
+rules:
+  telefono-operation-summary-title-case:
+    description: All operation summaries must use Title Case
+    message: "Operation summary '{{value}}' must use Title Case"
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^([A-Z][a-z0-9]*([ ][A-Z][a-z0-9]*)*|[A-Z]+)$"
+
+  telefono-operation-must-have-operationid:
+    description: All operations must have an operationId
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: operationId
+      function: truthy
+
+  telefono-operationid-camelcase:
+    description: Operation IDs must use camelCase
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  telefono-operation-must-have-description:
+    description: All operations should have a description
+    severity: info
+    given: "$.paths[*][*]"
+    then:
+      field: description
+      function: truthy
+
+  telefono-operation-must-have-tag:
+    description: All operations must have at least one tag
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: truthy
+
+  telefono-number-parameter-required:
+    description: Validation and lookup endpoints must require the 'number' parameter
+    severity: error
+    given: "$.paths['/validate'].get.parameters[?(@.name == 'number')]"
+    then:
+      field: required
+      function: truthy
+
+  telefono-response-200-required:
+    description: GET operations must define a 200 response
+    severity: error
+    given: "$.paths[*].get.responses"
+    then:
+      field: "200"
+      function: truthy
+
+  telefono-400-error-response:
+    description: All operations should define a 400 Bad Request response
+    severity: warn
+    given: "$.paths[*][*].responses"
+    then:
+      field: "400"
+      function: truthy
+
+  telefono-schema-properties-have-description:
+    description: All schema properties should have descriptions
+    severity: info
+    given: "$.components.schemas[*].properties[*]"
+    then:
+      field: description
+      function: truthy
+
+  telefono-api-key-security:
+    description: API must define ApiKeyAuth security scheme
+    severity: error
+    given: "$.components.securitySchemes"
+    then:
+      field: ApiKeyAuth
+      function: truthy
+
+  telefono-servers-required:
+    description: API must define servers
+    severity: error
+    given: "$"
+    then:
+      field: servers
+      function: truthy

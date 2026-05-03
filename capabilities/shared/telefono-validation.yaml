@@ -1,0 +1,206 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Telefono Phone Validation API"
+  description: "Real-time phone number validation, carrier lookup, and number formatting for 232+ countries."
+  tags:
+    - Carrier Lookup
+    - Data Enrichment
+    - Number Intelligence
+    - Phone Validation
+    - Telecommunications
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TELEFONO_API_KEY: TELEFONO_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: telefono
+      baseUri: https://api.telefono.com/v1
+      description: "Telefono phone number intelligence and validation API"
+      authentication:
+        type: apikey
+        key: X-API-Key
+        value: "{{TELEFONO_API_KEY}}"
+        placement: header
+      resources:
+        - name: validate
+          path: /validate
+          description: "Phone number validation"
+          operations:
+            - name: validate-phone-number
+              method: GET
+              description: "Validate a phone number and get type, carrier, and format data"
+              inputParameters:
+                - name: number
+                  in: query
+                  type: string
+                  required: true
+                  description: "Phone number to validate"
+                - name: country_code
+                  in: query
+                  type: string
+                  required: false
+                  description: "ISO country code hint"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: validate-phone-number-batch
+              method: POST
+              description: "Batch validate up to 100 phone numbers"
+              inputParameters:
+                - name: numbers
+                  in: body
+                  type: array
+                  required: true
+                  description: "Array of numbers to validate"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: carrier
+          path: /carrier
+          description: "Carrier and network lookup"
+          operations:
+            - name: lookup-carrier
+              method: GET
+              description: "Look up carrier and network info for a phone number"
+              inputParameters:
+                - name: number
+                  in: query
+                  type: string
+                  required: true
+                  description: "Phone number in E.164 format"
+                - name: hlr
+                  in: query
+                  type: boolean
+                  required: false
+                  description: "Perform real-time HLR lookup"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: format
+          path: /format
+          description: "Phone number formatting"
+          operations:
+            - name: format-phone-number
+              method: GET
+              description: "Format a phone number into E.164, national, international, and RFC3966 formats"
+              inputParameters:
+                - name: number
+                  in: query
+                  type: string
+                  required: true
+                  description: "Phone number to format"
+                - name: country_code
+                  in: query
+                  type: string
+                  required: false
+                  description: "Country code hint"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8120
+      namespace: telefono-rest
+      resources:
+        - path: /v1/validate
+          name: validate
+          description: "Phone number validation"
+          operations:
+            - method: GET
+              name: validate-number
+              description: "Validate a phone number"
+              call: "telefono.validate-phone-number"
+              with:
+                number: "rest.number"
+                country_code: "rest.country_code"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/carrier
+          name: carrier
+          description: "Carrier lookup"
+          operations:
+            - method: GET
+              name: lookup-carrier
+              description: "Look up carrier for a number"
+              call: "telefono.lookup-carrier"
+              with:
+                number: "rest.number"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/format
+          name: format
+          description: "Number formatting"
+          operations:
+            - method: GET
+              name: format-number
+              description: "Format a phone number"
+              call: "telefono.format-phone-number"
+              with:
+                number: "rest.number"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9120
+      namespace: telefono-mcp
+      transport: http
+      tools:
+        - name: validate-phone-number
+          description: "Validate a phone number and get type (mobile/landline/VoIP), carrier, country, and E.164 format"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "telefono.validate-phone-number"
+          with:
+            number: "tools.number"
+            country_code: "tools.country_code"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: lookup-carrier
+          description: "Look up the carrier/network operator for a phone number including MCC, MNC, and portability status"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "telefono.lookup-carrier"
+          with:
+            number: "tools.number"
+            hlr: "tools.hlr"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: format-phone-number
+          description: "Format a phone number into E.164, national, international, and RFC3966 formats"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "telefono.format-phone-number"
+          with:
+            number: "tools.number"
+            country_code: "tools.country_code"
+          outputParameters:
+            - type: object
+              mapping: "$."

@@ -1,0 +1,19 @@
+{
+  "name": "Telefono Validation Result",
+  "description": "Structure of a phone number validation response from the Telefono API",
+  "fields": [
+    { "name": "number", "type": "string", "required": true, "description": "Original input number" },
+    { "name": "valid", "type": "boolean", "required": true, "description": "Whether the number is valid" },
+    { "name": "number_type", "type": "string", "required": false, "description": "mobile, landline, voip, toll-free, premium-rate, shared-cost, unknown" },
+    { "name": "e164_format", "type": "string", "required": false, "description": "E.164 international format (e.g., +14155552671)" },
+    { "name": "national_format", "type": "string", "required": false, "description": "Local national format" },
+    { "name": "international_format", "type": "string", "required": false, "description": "Full international format" },
+    { "name": "country_code", "type": "string", "required": false, "description": "ISO 3166-1 alpha-2 country code" },
+    { "name": "country_name", "type": "string", "required": false, "description": "Full country name" },
+    { "name": "country_prefix", "type": "string", "required": false, "description": "International dialing prefix" },
+    { "name": "carrier", "type": "string", "required": false, "description": "Carrier or network operator" },
+    { "name": "is_reachable", "type": "string", "required": false, "description": "reachable, unreachable, unknown, or risk" },
+    { "name": "is_virtual", "type": "boolean", "required": false, "description": "Whether this is a virtual/VoIP number" },
+    { "name": "calling_code", "type": "integer", "required": false, "description": "Numeric international calling code" }
+  ]
+}

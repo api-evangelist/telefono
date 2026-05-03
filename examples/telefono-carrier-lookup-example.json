@@ -1,0 +1,21 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.telefono.com/v1/carrier?number=%2B447911123456&hlr=false",
+    "headers": {
+      "X-API-Key": "YOUR_API_KEY"
+    }
+  },
+  "response": {
+    "number": "+447911123456",
+    "carrier_name": "EE (Everything Everywhere)",
+    "original_carrier": "T-Mobile UK",
+    "is_ported": true,
+    "network_type": "lte",
+    "mcc": "234",
+    "mnc": "30",
+    "country_code": "GB",
+    "roaming": null,
+    "hlr_status": null
+  }
+}

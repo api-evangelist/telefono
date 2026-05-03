@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://developers.telefono.com/schema/validation-result",
+  "title": "Telefono Validation Result",
+  "description": "Result of a phone number validation request, including validity status, type, carrier, and formatted versions.",
+  "type": "object",
+  "required": ["number", "valid"],
+  "properties": {
+    "number": {
+      "type": "string",
+      "description": "The original input phone number"
+    },
+    "valid": {
+      "type": "boolean",
+      "description": "Whether the phone number is syntactically and numerically valid"
+    },
+    "number_type": {
+      "type": "string",
+      "enum": ["mobile", "landline", "voip", "toll-free", "premium-rate", "shared-cost", "unknown"],
+      "description": "Classification of the phone number type"
+    },
+    "e164_format": {
+      "type": "string",
+      "pattern": "^\\+[1-9]\\d{1,14}$",
+      "description": "Number formatted in E.164 international standard"
+    },
+    "national_format": {
+      "type": "string",
+      "description": "Number in local national dialing format"
+    },
+    "international_format": {
+      "type": "string",
+      "description": "Number in full international dialing format"
+    },
+    "country_code": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2,
+      "description": "ISO 3166-1 alpha-2 country code"
+    },
+    "country_name": {
+      "type": "string",
+      "description": "Full country name in English"
+    },
+    "country_prefix": {
+      "type": "string",
+      "description": "International dialing prefix with + sign (e.g., +1)"
+    },
+    "carrier": {
+      "type": "string",
+      "description": "Mobile carrier or network operator name"
+    },
+    "line_type": {
+      "type": "string",
+      "description": "Detailed line type classification"
+    },
+    "is_reachable": {
+      "type": "string",
+      "enum": ["reachable", "unreachable", "unknown", "risk"],
+      "description": "Reachability assessment for the number"
+    },
+    "is_virtual": {
+      "type": "boolean",
+      "description": "True if the number appears to be virtual, VoIP, or non-geographic"
+    },
+    "calling_code": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 999,
+      "description": "Numeric international calling code"
+    }
+  }
+}

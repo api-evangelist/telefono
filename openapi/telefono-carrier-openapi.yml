@@ -1,0 +1,99 @@
+openapi: 3.0.3
+info:
+  title: Telefono Carrier Lookup API
+  description: >-
+    Look up carrier and network information for phone numbers worldwide, including
+    MCC, MNC, network type, and real-time HLR lookup for portability-aware detection.
+  version: '1.0'
+  contact:
+    name: Telefono Support
+    url: https://www.telefono.com/support
+    email: support@telefono.com
+  termsOfService: https://www.telefono.com/terms
+servers:
+  - url: https://api.telefono.com/v1
+    description: Telefono API
+security:
+  - ApiKeyAuth: []
+tags:
+  - name: Carrier
+    description: Carrier lookup endpoints
+paths:
+  /carrier:
+    get:
+      operationId: lookupCarrier
+      summary: Lookup Carrier
+      description: >-
+        Look up carrier information for a phone number. Returns current carrier,
+        network type, MCC/MNC, and roaming status.
+      tags:
+        - Carrier
+      parameters:
+        - name: number
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Phone number in E.164 format or with country prefix
+        - name: hlr
+          in: query
+          schema:
+            type: boolean
+          description: >-
+            Perform real-time HLR (Home Location Register) lookup for accurate
+            portability-aware carrier detection (higher cost, additional latency)
+      responses:
+        '200':
+          description: Carrier lookup result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierResult'
+        '400':
+          description: Invalid request
+        '429':
+          description: Rate limit exceeded
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+  schemas:
+    CarrierResult:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Phone number in E.164 format
+        carrier_name:
+          type: string
+          description: Name of the current carrier/operator
+        original_carrier:
+          type: string
+          description: Original carrier before any number portability
+        is_ported:
+          type: boolean
+          description: Whether the number has been ported to a different carrier
+        network_type:
+          type: string
+          enum: [gsm, cdma, umts, lte, nr5g, unknown]
+          description: Mobile network technology type
+        mcc:
+          type: string
+          description: Mobile Country Code (3 digits)
+        mnc:
+          type: string
+          description: Mobile Network Code (2-3 digits)
+        country_code:
+          type: string
+          description: ISO 3166-1 alpha-2 country code
+        roaming:
+          type: boolean
+          description: Whether the device is currently roaming (HLR lookup only)
+        hlr_status:
+          type: string
+          enum: [active, inactive, absent, unknown]
+          description: HLR status of the number (HLR lookup only)
+      required:
+        - number

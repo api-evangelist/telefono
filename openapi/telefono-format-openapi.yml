@@ -1,0 +1,92 @@
+openapi: 3.0.3
+info:
+  title: Telefono Number Formatting API
+  description: >-
+    Format and parse phone numbers between E.164, national, international,
+    and RFC3966 formats for any country.
+  version: '1.0'
+  contact:
+    name: Telefono Support
+    url: https://www.telefono.com/support
+  termsOfService: https://www.telefono.com/terms
+servers:
+  - url: https://api.telefono.com/v1
+    description: Telefono API
+security:
+  - ApiKeyAuth: []
+tags:
+  - name: Format
+    description: Number formatting and parsing endpoints
+paths:
+  /format:
+    get:
+      operationId: formatPhoneNumber
+      summary: Format Phone Number
+      description: Format a phone number into multiple standard formats.
+      tags:
+        - Format
+      parameters:
+        - name: number
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Phone number to format (any format)
+        - name: country_code
+          in: query
+          schema:
+            type: string
+          description: ISO 3166-1 alpha-2 country code hint for local numbers
+        - name: output_format
+          in: query
+          schema:
+            type: string
+            enum: [e164, national, international, rfc3966, all]
+            default: all
+          description: Desired output format
+      responses:
+        '200':
+          description: Formatted number result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FormatResult'
+        '400':
+          description: Could not parse the number
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+  schemas:
+    FormatResult:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Original input number
+        e164:
+          type: string
+          description: E.164 format (e.g., +14155552671)
+        national:
+          type: string
+          description: National format (e.g., (415) 555-2671)
+        international:
+          type: string
+          description: International format (e.g., +1 415-555-2671)
+        rfc3966:
+          type: string
+          description: RFC 3966 tel URI format (e.g., tel:+1-415-555-2671)
+        country_code:
+          type: string
+          description: Detected country code (ISO alpha-2)
+        calling_code:
+          type: integer
+          description: Numeric calling code
+        is_valid:
+          type: boolean
+          description: Whether the number was successfully parsed
+      required:
+        - number
+        - is_valid

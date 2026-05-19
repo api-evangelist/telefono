@@ -1,0 +1,89 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Telefono Carrier Lookup API — Carrier
+  description: 'Telefono Carrier Lookup API — Carrier. 1 operations. Lead operation: Lookup Carrier. Self-contained Naftiko
+    capability covering one Telefono business surface.'
+  tags:
+  - Telefono
+  - Carrier
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TELEFONO_API_KEY: TELEFONO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: carrier-carrier
+    baseUri: https://api.telefono.com/v1
+    description: Telefono Carrier Lookup API — Carrier business capability. Self-contained, no shared references.
+    resources:
+    - name: carrier
+      path: /carrier
+      operations:
+      - name: lookupcarrier
+        method: GET
+        description: Lookup Carrier
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: number
+          in: query
+          type: string
+          description: Phone number in E.164 format or with country prefix
+          required: true
+        - name: hlr
+          in: query
+          type: boolean
+          description: Perform real-time HLR (Home Location Register) lookup for accurate portability-aware carrier detection
+            (higher cost, additional latency)
+    authentication:
+      type: apikey
+      key: X-API-Key
+      value: '{{env.TELEFONO_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: carrier-carrier-rest
+    port: 8080
+    description: REST adapter for Telefono Carrier Lookup API — Carrier. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/carrier
+      name: carrier
+      description: REST surface for carrier.
+      operations:
+      - method: GET
+        name: lookupcarrier
+        description: Lookup Carrier
+        call: carrier-carrier.lookupcarrier
+        with:
+          number: rest.number
+          hlr: rest.hlr
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: carrier-carrier-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Telefono Carrier Lookup API — Carrier. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: lookup-carrier
+      description: Lookup Carrier
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: carrier-carrier.lookupcarrier
+      with:
+        number: tools.number
+        hlr: tools.hlr
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,87 +1,118 @@
-# Telefono
+# Telefono (telefono)
 
-Telefono is a phone number intelligence and validation API platform providing real-time phone number lookup, validation, carrier information, line type detection, and number formatting services. The platform helps businesses verify user phone numbers, detect fraud, improve SMS deliverability, and enrich contact data.
+Telefono is a phone number intelligence and validation API platform providing real-time phone number lookup, validation, carrier information, line type detection, and number formatting services for developers. The platform helps businesses verify user phone numbers, detect fraud, improve deliverability of SMS campaigns, and enrich contact data with carrier and geographic information.
 
-**Human URL:** [https://www.telefono.com](https://www.telefono.com)
-**Developer URL:** [https://developers.telefono.com](https://developers.telefono.com)
+**APIs.json:** [https://www.telefono.com](https://www.telefono.com)
+
+## Scope
+
+- **Type:** Index
+
+## Tags
+
+- Carrier Lookup
+- Data Enrichment
+- Fraud Prevention
+- Number Intelligence
+- Number Verification
+- Phone Lookup
+- Phone Validation
+- Telecommunications
+
+## Timestamps
+
+- **Created:** 2024-01-15
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### Telefono Phone Validation API
-Validate phone numbers in real-time to determine validity, line type, reachability, carrier, and country.
 
-- **Documentation:** [https://developers.telefono.com/validation](https://developers.telefono.com/validation)
-- **OpenAPI Spec:** [openapi/telefono-validation-openapi.yml](openapi/telefono-validation-openapi.yml)
+Validate phone numbers in real-time to determine if they are valid, active, and reachable. Returns validity status, number type (mobile, landline, VoIP, toll-free), formatted number in E.164 and national formats, country information, and whether the number is likely a virtual or disposable number.
+
+- **Human URL:** [https://developers.telefono.com/validation](https://developers.telefono.com/validation)
+- **Base URL:** `https://api.telefono.com/v1/validate`
+
+#### Tags
+
+- E.164 Format
+- Number Formatting
+- Number Verification
+- Phone Validation
+- Real-Time Validation
+
+#### Properties
+
+- [Documentation](https://developers.telefono.com/validation)
+- [OpenAPI](openapi/telefono-validation-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/telefono-validation.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefono-validation.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Authentication](https://developers.telefono.com/authentication)
+- [Getting Started](https://developers.telefono.com/getting-started)
+- [Pricing](https://www.telefono.com/pricing)
+- [Rate Limits](https://developers.telefono.com/rate-limits)
 
 ### Telefono Carrier Lookup API
-Look up carrier information, MCC/MNC, network type, and portability status for any phone number.
 
-- **Documentation:** [https://developers.telefono.com/carrier](https://developers.telefono.com/carrier)
-- **OpenAPI Spec:** [openapi/telefono-carrier-openapi.yml](openapi/telefono-carrier-openapi.yml)
+Look up carrier and network information for any phone number worldwide. Returns the current carrier name, network type (GSM, CDMA, UMTS, LTE, 5G), mobile country code (MCC), mobile network code (MNC), and roaming status. Supports real-time HLR (Home Location Register) lookups for accurate portability-aware carrier detection.
+
+- **Human URL:** [https://developers.telefono.com/carrier](https://developers.telefono.com/carrier)
+- **Base URL:** `https://api.telefono.com/v1/carrier`
+
+#### Tags
+
+- Carrier Detection
+- Carrier Lookup
+- HLR
+- MCC MNC
+- Network Type
+- Telecommunications
+
+#### Properties
+
+- [Documentation](https://developers.telefono.com/carrier)
+- [OpenAPI](openapi/telefono-carrier-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/telefono-carrier.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefono-carrier.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Authentication](https://developers.telefono.com/authentication)
+- [Pricing](https://www.telefono.com/pricing/carrier)
 
 ### Telefono Number Formatting API
-Format phone numbers between E.164, national, international, and RFC3966 formats.
 
-- **Documentation:** [https://developers.telefono.com/format](https://developers.telefono.com/format)
-- **OpenAPI Spec:** [openapi/telefono-format-openapi.yml](openapi/telefono-format-openapi.yml)
+Format phone numbers consistently across different national and international formats. Convert between E.164, national, international, and RFC3966 formats. Supports parsing of phone numbers with country code hints, extracting country codes, and generating click-to-call compatible URIs.
 
-## Artifacts
+- **Human URL:** [https://developers.telefono.com/format](https://developers.telefono.com/format)
+- **Base URL:** `https://api.telefono.com/v1/format`
 
-### OpenAPI Specifications
-| File | Description |
-|---|---|
-| [openapi/telefono-validation-openapi.yml](openapi/telefono-validation-openapi.yml) | Phone Validation API — single and batch validation |
-| [openapi/telefono-carrier-openapi.yml](openapi/telefono-carrier-openapi.yml) | Carrier Lookup API — MCC/MNC, network type, portability |
-| [openapi/telefono-format-openapi.yml](openapi/telefono-format-openapi.yml) | Number Formatting API — E.164, national, international, RFC3966 |
+#### Tags
 
-### JSON Schemas
-| File | Description |
-|---|---|
-| [json-schema/telefono-validation-result-schema.json](json-schema/telefono-validation-result-schema.json) | Validation result JSON Schema |
+- E.164
+- International Format
+- National Format
+- Number Formatting
+- Phone Parsing
 
-### JSON Structure
-| File | Description |
-|---|---|
-| [json-structure/telefono-validation-result-structure.json](json-structure/telefono-validation-result-structure.json) | Validation result field structure |
+#### Properties
 
-### JSON-LD
-| File | Description |
-|---|---|
-| [json-ld/telefono-context.jsonld](json-ld/telefono-context.jsonld) | JSON-LD context for Telefono data types |
-
-### Examples
-| File | Description |
-|---|---|
-| [examples/telefono-validate-number-example.json](examples/telefono-validate-number-example.json) | Phone number validation example |
-| [examples/telefono-carrier-lookup-example.json](examples/telefono-carrier-lookup-example.json) | Carrier lookup example |
-
-### Spectral Rules
-| File | Description |
-|---|---|
-| [rules/telefono-rules.yml](rules/telefono-rules.yml) | Spectral ruleset for Telefono API conventions |
-
-### Naftiko Capabilities
-| File | Description |
-|---|---|
-| [capabilities/shared/telefono-validation.yaml](capabilities/shared/telefono-validation.yaml) | Shared phone intelligence capability definition |
-| [capabilities/phone-intelligence.yaml](capabilities/phone-intelligence.yaml) | Phone intelligence workflow (REST port 8080, MCP port 9090) |
-
-### Vocabulary
-| File | Description |
-|---|---|
-| [vocabulary/telefono-vocabulary.yml](vocabulary/telefono-vocabulary.yml) | Telefono platform vocabulary |
+- [Documentation](https://developers.telefono.com/format)
+- [OpenAPI](openapi/telefono-format-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/telefono-format.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/telefono-format.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Authentication](https://developers.telefono.com/authentication)
 
 ## Common Properties
 
-| Property | URL |
-|---|---|
-| Authentication | https://developers.telefono.com/authentication |
-| Rate Limits | https://developers.telefono.com/rate-limits |
-| Pricing | https://www.telefono.com/pricing |
-| Terms of Service | https://www.telefono.com/terms |
-| Privacy Policy | https://www.telefono.com/privacy |
-| Status | https://status.telefono.com |
-| Support | https://www.telefono.com/support |
+- [Authentication](https://developers.telefono.com/authentication)
+- [Getting Started](https://developers.telefono.com/getting-started)
+- [Rate Limits](https://developers.telefono.com/rate-limits)
+- [Sign Up](https://www.telefono.com/signup)
+- [Pricing](https://www.telefono.com/pricing)
+- [Terms of Service](https://www.telefono.com/terms)
+- [Privacy Policy](https://www.telefono.com/privacy)
+- [Status Page](https://status.telefono.com)
+- [Support](https://www.telefono.com/support)
+- [Git Hub](https://github.com/telefono-api)
 
 ## Maintainers
-- **Telefono Team** — api@telefono.com
+
+**Email:** api@telefono.com

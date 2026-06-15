@@ -1,0 +1,211 @@
+{
+  "item": [
+    {
+      "id": "aa511ce2-ad2e-4843-9a58-c355f9f303d3",
+      "name": "Format",
+      "description": {
+        "content": "Number formatting and parsing endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "52e1a60a-d084-4391-9121-f54d97725f8a",
+          "name": "Format Phone Number",
+          "request": {
+            "name": "Format Phone Number",
+            "description": {
+              "content": "Format a phone number into multiple standard formats.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "number",
+                  "value": "<string>",
+                  "description": "(Required) Phone number to format (any format)"
+                },
+                {
+                  "disabled": false,
+                  "key": "country_code",
+                  "value": "<string>",
+                  "description": "ISO 3166-1 alpha-2 country code hint for local numbers"
+                },
+                {
+                  "disabled": false,
+                  "key": "output_format",
+                  "value": "all",
+                  "description": "Desired output format"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a1493602-7b84-46f0-bb83-36d39f0675e5",
+              "name": "Formatted number result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "output_format",
+                      "value": "all"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"number\": \"string\",\n  \"is_valid\": true,\n  \"e164\": \"string\",\n  \"national\": \"string\",\n  \"international\": \"string\",\n  \"rfc3966\": \"string\",\n  \"country_code\": \"string\",\n  \"calling_code\": 8049\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "109d0aa0-cf41-4a7b-adbc-eaa0ccb053b6",
+              "name": "Could not parse the number",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country_code",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "output_format",
+                      "value": "all"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.telefono.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "025ead66-416d-4a57-844a-f8350d48f606",
+    "name": "Telefono Number Formatting API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Format and parse phone numbers between E.164, national, international, and RFC3966 formats for any country.\n\nContact Support:\n Name: Telefono Support",
+      "type": "text/plain"
+    }
+  }
+}

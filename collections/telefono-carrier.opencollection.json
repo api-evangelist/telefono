@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telefono Carrier Lookup API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Carrier",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Lookup Carrier",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.telefono.com/v1/carrier",
+            "params": [
+              {
+                "name": "number",
+                "value": "",
+                "type": "query",
+                "description": "Phone number in E.164 format or with country prefix"
+              },
+              {
+                "name": "hlr",
+                "value": "",
+                "type": "query",
+                "description": "Perform real-time HLR (Home Location Register) lookup for accurate portability-aware carrier detection (higher cost, additional latency)"
+              }
+            ]
+          },
+          "docs": "Look up carrier information for a phone number. Returns current carrier, network type, MCC/MNC, and roaming status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

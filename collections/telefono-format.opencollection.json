@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telefono Number Formatting API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Format",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Format Phone Number",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.telefono.com/v1/format",
+            "params": [
+              {
+                "name": "number",
+                "value": "",
+                "type": "query",
+                "description": "Phone number to format (any format)"
+              },
+              {
+                "name": "country_code",
+                "value": "",
+                "type": "query",
+                "description": "ISO 3166-1 alpha-2 country code hint for local numbers"
+              },
+              {
+                "name": "output_format",
+                "value": "",
+                "type": "query",
+                "description": "Desired output format"
+              }
+            ]
+          },
+          "docs": "Format a phone number into multiple standard formats."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

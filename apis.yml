@@ -113,7 +113,7 @@ common:
     url: https://developers.telefono.com/getting-started
   - type: RateLimits
     url: https://developers.telefono.com/rate-limits
-  - type: SignUp
+  - type: Signup
     url: https://www.telefono.com/signup
   - type: Pricing
     url: https://www.telefono.com/pricing

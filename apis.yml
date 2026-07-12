@@ -108,6 +108,8 @@ apis:
         url: mailto:support@telefono.com
 common:
   - type: Authentication
+    url: authentication/telefono-authentication.yml
+  - type: Authentication
     url: https://developers.telefono.com/authentication
   - type: GettingStarted
     url: https://developers.telefono.com/getting-started

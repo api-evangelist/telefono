@@ -107,6 +107,8 @@ apis:
       - type: Email
         url: mailto:support@telefono.com
 common:
+  - type: AgenticAccess
+    url: agentic-access/telefono-agentic-access.yml
   - type: Authentication
     url: authentication/telefono-authentication.yml
   - type: Authentication

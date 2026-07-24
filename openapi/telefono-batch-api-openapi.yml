@@ -1,9 +1,7 @@
 openapi: 3.0.3
 info:
-  title: Telefono Phone Validation API
-  description: >-
-    Validate phone numbers in real-time to determine validity, line type, reachability,
-    and formatting. Supports 232+ countries with E.164 output and carrier information.
+  title: Telefono Carrier Lookup Batch API
+  description: Look up carrier and network information for phone numbers worldwide, including MCC, MNC, network type, and real-time HLR lookup for portability-aware detection.
   version: '1.0'
   contact:
     name: Telefono Support
@@ -11,55 +9,21 @@ info:
     email: support@telefono.com
   termsOfService: https://www.telefono.com/terms
 servers:
-  - url: https://api.telefono.com/v1
-    description: Telefono API
+- url: https://api.telefono.com/v1
+  description: Telefono API
 security:
-  - ApiKeyAuth: []
+- ApiKeyAuth: []
 tags:
-  - name: Validation
-    description: Phone number validation endpoints
-  - name: Batch
-    description: Batch validation for multiple numbers
+- name: Batch
+  description: Batch validation for multiple numbers
 paths:
-  /validate:
-    get:
-      operationId: validatePhoneNumber
-      summary: Validate Phone Number
-      description: >-
-        Validate a single phone number and return its validity status, line type,
-        carrier, country, and formatted versions.
-      tags:
-        - Validation
-      parameters:
-        - name: number
-          in: query
-          required: true
-          schema:
-            type: string
-          description: Phone number to validate (any format; include country code for best results)
-        - name: country_code
-          in: query
-          schema:
-            type: string
-          description: ISO 3166-1 alpha-2 country code hint for numbers without country prefix (e.g., US, GB)
-      responses:
-        '200':
-          description: Validation result
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ValidationResult'
-        '400':
-          description: Invalid request parameters
-        '429':
-          description: Rate limit exceeded
   /validate/batch:
     post:
       operationId: validatePhoneNumberBatch
       summary: Validate Phone Number Batch
       description: Validate up to 100 phone numbers in a single request.
       tags:
-        - Batch
+      - Batch
       requestBody:
         required: true
         content:
@@ -67,14 +31,14 @@ paths:
             schema:
               type: object
               required:
-                - numbers
+              - numbers
               properties:
                 numbers:
                   type: array
                   items:
                     type: object
                     required:
-                      - number
+                    - number
                     properties:
                       number:
                         type: string
@@ -106,11 +70,6 @@ paths:
                     type: integer
                     description: Number of invalid numbers
 components:
-  securitySchemes:
-    ApiKeyAuth:
-      type: apiKey
-      in: header
-      name: X-API-Key
   schemas:
     ValidationResult:
       type: object
@@ -123,7 +82,14 @@ components:
           description: Whether the phone number is valid
         number_type:
           type: string
-          enum: [mobile, landline, voip, toll-free, premium-rate, shared-cost, unknown]
+          enum:
+          - mobile
+          - landline
+          - voip
+          - toll-free
+          - premium-rate
+          - shared-cost
+          - unknown
           description: Type of phone number
         e164_format:
           type: string
@@ -151,7 +117,11 @@ components:
           description: Detailed line type classification
         is_reachable:
           type: string
-          enum: [reachable, unreachable, unknown, risk]
+          enum:
+          - reachable
+          - unreachable
+          - unknown
+          - risk
           description: Whether the number is likely reachable
         is_virtual:
           type: boolean
@@ -160,5 +130,10 @@ components:
           type: integer
           description: Numeric international calling code (e.g., 1 for US)
       required:
-        - number
-        - valid
+      - number
+      - valid
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key

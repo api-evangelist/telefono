@@ -1,0 +1,117 @@
+openapi: 3.0.3
+info:
+  title: Telefono Carrier Lookup Batch Validation API
+  description: Look up carrier and network information for phone numbers worldwide, including MCC, MNC, network type, and real-time HLR lookup for portability-aware detection.
+  version: '1.0'
+  contact:
+    name: Telefono Support
+    url: https://www.telefono.com/support
+    email: support@telefono.com
+  termsOfService: https://www.telefono.com/terms
+servers:
+- url: https://api.telefono.com/v1
+  description: Telefono API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Validation
+  description: Phone number validation endpoints
+paths:
+  /validate:
+    get:
+      operationId: validatePhoneNumber
+      summary: Validate Phone Number
+      description: Validate a single phone number and return its validity status, line type, carrier, country, and formatted versions.
+      tags:
+      - Validation
+      parameters:
+      - name: number
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Phone number to validate (any format; include country code for best results)
+      - name: country_code
+        in: query
+        schema:
+          type: string
+        description: ISO 3166-1 alpha-2 country code hint for numbers without country prefix (e.g., US, GB)
+      responses:
+        '200':
+          description: Validation result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationResult'
+        '400':
+          description: Invalid request parameters
+        '429':
+          description: Rate limit exceeded
+components:
+  schemas:
+    ValidationResult:
+      type: object
+      properties:
+        number:
+          type: string
+          description: The input phone number
+        valid:
+          type: boolean
+          description: Whether the phone number is valid
+        number_type:
+          type: string
+          enum:
+          - mobile
+          - landline
+          - voip
+          - toll-free
+          - premium-rate
+          - shared-cost
+          - unknown
+          description: Type of phone number
+        e164_format:
+          type: string
+          description: Number in E.164 format (e.g., +14155552671)
+        national_format:
+          type: string
+          description: Number in national dialing format (e.g., (415) 555-2671)
+        international_format:
+          type: string
+          description: Number in international format (e.g., +1 415-555-2671)
+        country_code:
+          type: string
+          description: ISO 3166-1 alpha-2 country code (e.g., US)
+        country_name:
+          type: string
+          description: Full country name (e.g., United States)
+        country_prefix:
+          type: string
+          description: International dialing prefix (e.g., +1)
+        carrier:
+          type: string
+          description: Carrier or network operator name
+        line_type:
+          type: string
+          description: Detailed line type classification
+        is_reachable:
+          type: string
+          enum:
+          - reachable
+          - unreachable
+          - unknown
+          - risk
+          description: Whether the number is likely reachable
+        is_virtual:
+          type: boolean
+          description: Whether the number appears to be a virtual or VoIP number
+        calling_code:
+          type: integer
+          description: Numeric international calling code (e.g., 1 for US)
+      required:
+      - number
+      - valid
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key

@@ -1,22 +1,21 @@
 openapi: 3.0.3
 info:
-  title: Telefono Number Formatting API
-  description: >-
-    Format and parse phone numbers between E.164, national, international,
-    and RFC3966 formats for any country.
+  title: Telefono Carrier Lookup Batch Format API
+  description: Look up carrier and network information for phone numbers worldwide, including MCC, MNC, network type, and real-time HLR lookup for portability-aware detection.
   version: '1.0'
   contact:
     name: Telefono Support
     url: https://www.telefono.com/support
+    email: support@telefono.com
   termsOfService: https://www.telefono.com/terms
 servers:
-  - url: https://api.telefono.com/v1
-    description: Telefono API
+- url: https://api.telefono.com/v1
+  description: Telefono API
 security:
-  - ApiKeyAuth: []
+- ApiKeyAuth: []
 tags:
-  - name: Format
-    description: Number formatting and parsing endpoints
+- name: Format
+  description: Number formatting and parsing endpoints
 paths:
   /format:
     get:
@@ -24,26 +23,31 @@ paths:
       summary: Format Phone Number
       description: Format a phone number into multiple standard formats.
       tags:
-        - Format
+      - Format
       parameters:
-        - name: number
-          in: query
-          required: true
-          schema:
-            type: string
-          description: Phone number to format (any format)
-        - name: country_code
-          in: query
-          schema:
-            type: string
-          description: ISO 3166-1 alpha-2 country code hint for local numbers
-        - name: output_format
-          in: query
-          schema:
-            type: string
-            enum: [e164, national, international, rfc3966, all]
-            default: all
-          description: Desired output format
+      - name: number
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Phone number to format (any format)
+      - name: country_code
+        in: query
+        schema:
+          type: string
+        description: ISO 3166-1 alpha-2 country code hint for local numbers
+      - name: output_format
+        in: query
+        schema:
+          type: string
+          enum:
+          - e164
+          - national
+          - international
+          - rfc3966
+          - all
+          default: all
+        description: Desired output format
       responses:
         '200':
           description: Formatted number result
@@ -54,11 +58,6 @@ paths:
         '400':
           description: Could not parse the number
 components:
-  securitySchemes:
-    ApiKeyAuth:
-      type: apiKey
-      in: header
-      name: X-API-Key
   schemas:
     FormatResult:
       type: object
@@ -88,5 +87,10 @@ components:
           type: boolean
           description: Whether the number was successfully parsed
       required:
-        - number
-        - is_valid
+      - number
+      - is_valid
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key

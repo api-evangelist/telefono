@@ -4,6 +4,19 @@ description: >-
   validation, carrier information, line type detection, and number formatting services for developers. The platform
   helps businesses verify user phone numbers, detect fraud, improve deliverability of SMS campaigns, and enrich contact
   data with carrier and geographic information.
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://www.telefono.com/logo.png
 url: https://www.telefono.com
 type: Index
@@ -20,92 +33,110 @@ created: '2024-01-15'
 modified: '2026-05-19'
 specificationVersion: '0.18'
 apis:
-  - name: Telefono Phone Validation API
-    description: >-
-      Validate phone numbers in real-time to determine if they are valid, active, and reachable. Returns validity
-      status, number type (mobile, landline, VoIP, toll-free), formatted number in E.164 and national formats, country
-      information, and whether the number is likely a virtual or disposable number.
-    image: https://www.telefono.com/api-logo.png
-    humanURL: https://developers.telefono.com/validation
-    baseURL: https://api.telefono.com/v1/validate
-    version: '1.0'
-    tags:
-      - E.164 Format
-      - Number Formatting
-      - Number Verification
-      - Phone Validation
-      - Real-Time Validation
-    properties:
-      - type: Documentation
-        url: https://developers.telefono.com/validation
-      - type: OpenAPI
-        url: openapi/telefono-validation-openapi.yml
-      - type: Authentication
-        url: https://developers.telefono.com/authentication
-      - type: GettingStarted
-        url: https://developers.telefono.com/getting-started
-      - type: Pricing
-        url: https://www.telefono.com/pricing
-      - type: RateLimits
-        url: https://developers.telefono.com/rate-limits
-    contact:
-      - type: Email
-        url: mailto:support@telefono.com
-      - type: Support
-        url: https://www.telefono.com/support
-  - name: Telefono Carrier Lookup API
-    description: >-
-      Look up carrier and network information for any phone number worldwide. Returns the current carrier name, network
-      type (GSM, CDMA, UMTS, LTE, 5G), mobile country code (MCC), mobile network code (MNC), and roaming status.
-      Supports real-time HLR (Home Location Register) lookups for accurate portability-aware carrier detection.
-    image: https://www.telefono.com/api-logo.png
-    humanURL: https://developers.telefono.com/carrier
-    baseURL: https://api.telefono.com/v1/carrier
-    version: '1.0'
-    tags:
-      - Carrier Detection
-      - Carrier Lookup
-      - HLR
-      - MCC MNC
-      - Network Type
-      - Telecommunications
-    properties:
-      - type: Documentation
-        url: https://developers.telefono.com/carrier
-      - type: OpenAPI
-        url: openapi/telefono-carrier-openapi.yml
-      - type: Authentication
-        url: https://developers.telefono.com/authentication
-      - type: Pricing
-        url: https://www.telefono.com/pricing/carrier
-    contact:
-      - type: Email
-        url: mailto:support@telefono.com
-  - name: Telefono Number Formatting API
-    description: >-
-      Format phone numbers consistently across different national and international formats. Convert between E.164,
-      national, international, and RFC3966 formats. Supports parsing of phone numbers with country code hints,
-      extracting country codes, and generating click-to-call compatible URIs.
-    image: https://www.telefono.com/api-logo.png
-    humanURL: https://developers.telefono.com/format
-    baseURL: https://api.telefono.com/v1/format
-    version: '1.0'
-    tags:
-      - E.164
-      - International Format
-      - National Format
-      - Number Formatting
-      - Phone Parsing
-    properties:
-      - type: Documentation
-        url: https://developers.telefono.com/format
-      - type: OpenAPI
-        url: openapi/telefono-format-openapi.yml
-      - type: Authentication
-        url: https://developers.telefono.com/authentication
-    contact:
-      - type: Email
-        url: mailto:support@telefono.com
+- aid: telefono:telefono-batch-api
+  name: Telefono Batch API
+  description: Batch validation for multiple numbers
+  humanURL: https://developers.telefono.com/validation
+  baseURL: https://api.telefono.com/v1/validate
+  tags:
+  - Batch
+  properties:
+  - type: OpenAPI
+    url: openapi/telefono-batch-api-openapi.yml
+  - type: Documentation
+    url: https://developers.telefono.com/validation
+  - type: Authentication
+    url: https://developers.telefono.com/authentication
+  - type: GettingStarted
+    url: https://developers.telefono.com/getting-started
+  - type: Pricing
+    url: https://www.telefono.com/pricing
+  - type: RateLimits
+    url: https://developers.telefono.com/rate-limits
+  - type: Documentation
+    url: https://developers.telefono.com/carrier
+  - type: Pricing
+    url: https://www.telefono.com/pricing/carrier
+  - type: Documentation
+    url: https://developers.telefono.com/format
+- aid: telefono:telefono-carrier-api
+  name: Telefono Carrier API
+  description: Carrier lookup endpoints
+  humanURL: https://developers.telefono.com/validation
+  baseURL: https://api.telefono.com/v1/validate
+  tags:
+  - Carrier
+  properties:
+  - type: OpenAPI
+    url: openapi/telefono-carrier-api-openapi.yml
+  - type: Documentation
+    url: https://developers.telefono.com/validation
+  - type: Authentication
+    url: https://developers.telefono.com/authentication
+  - type: GettingStarted
+    url: https://developers.telefono.com/getting-started
+  - type: Pricing
+    url: https://www.telefono.com/pricing
+  - type: RateLimits
+    url: https://developers.telefono.com/rate-limits
+  - type: Documentation
+    url: https://developers.telefono.com/carrier
+  - type: Pricing
+    url: https://www.telefono.com/pricing/carrier
+  - type: Documentation
+    url: https://developers.telefono.com/format
+- aid: telefono:telefono-format-api
+  name: Telefono Format API
+  description: Number formatting and parsing endpoints
+  humanURL: https://developers.telefono.com/validation
+  baseURL: https://api.telefono.com/v1/validate
+  tags:
+  - Format
+  properties:
+  - type: OpenAPI
+    url: openapi/telefono-format-api-openapi.yml
+  - type: Documentation
+    url: https://developers.telefono.com/validation
+  - type: Authentication
+    url: https://developers.telefono.com/authentication
+  - type: GettingStarted
+    url: https://developers.telefono.com/getting-started
+  - type: Pricing
+    url: https://www.telefono.com/pricing
+  - type: RateLimits
+    url: https://developers.telefono.com/rate-limits
+  - type: Documentation
+    url: https://developers.telefono.com/carrier
+  - type: Pricing
+    url: https://www.telefono.com/pricing/carrier
+  - type: Documentation
+    url: https://developers.telefono.com/format
+- aid: telefono:telefono-validation-api
+  name: Telefono Validation API
+  description: Phone number validation endpoints
+  humanURL: https://developers.telefono.com/validation
+  baseURL: https://api.telefono.com/v1/validate
+  tags:
+  - Validation
+  properties:
+  - type: OpenAPI
+    url: openapi/telefono-validation-api-openapi.yml
+  - type: Documentation
+    url: https://developers.telefono.com/validation
+  - type: Authentication
+    url: https://developers.telefono.com/authentication
+  - type: GettingStarted
+    url: https://developers.telefono.com/getting-started
+  - type: Pricing
+    url: https://www.telefono.com/pricing
+  - type: RateLimits
+    url: https://developers.telefono.com/rate-limits
+  - type: Documentation
+    url: https://developers.telefono.com/carrier
+  - type: Pricing
+    url: https://www.telefono.com/pricing/carrier
+  - type: Documentation
+    url: https://developers.telefono.com/format
 common:
   - type: AgenticAccess
     url: agentic-access/telefono-agentic-access.yml

@@ -1,0 +1,20 @@
+{
+  "provider": "telefono",
+  "sources": [
+    "telefono-batch-api-openapi.yml",
+    "telefono-carrier-api-openapi.yml",
+    "telefono-format-api-openapi.yml",
+    "telefono-validation-api-openapi.yml"
+  ],
+  "outputs": [
+    "telefono-batch-api-openapi.yml",
+    "telefono-carrier-api-openapi.yml",
+    "telefono-format-api-openapi.yml",
+    "telefono-validation-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

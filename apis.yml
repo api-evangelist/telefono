@@ -5,18 +5,24 @@ description: >-
   helps businesses verify user phone numbers, detect fraud, improve deliverability of SMS campaigns, and enrich contact
   data with carrier and geographic information.
 accessModel:
-  pricing: enterprise
-  onboarding: self-serve
+  pricing: unknown
+  onboarding: unknown
   trial: false
   try_now: false
   public: false
-  label: Enterprise · Self-serve signup
-  confidence: high
+  label: Unknown · no verifiable provider surface
+  confidence: low
   source:
   - plans
-  - authentication
-  generated: '2026-07-22'
+  generated: '2026-08-14'
   method: derived
+  note: >-
+    Corrected 2026-08-14. The previous value (pricing "enterprise", onboarding
+    "self-serve", confidence "high") contradicted its own cited source: the
+    plans/ artifact it derives from states that the telefono.com slug does not
+    resolve to a verifiable public product and that its tiers were synthetic.
+    No pricing page, signup page or developer portal could be reached — see
+    x-coverage below. The label is now unknown rather than asserted.
 image: https://www.telefono.com/logo.png
 url: https://www.telefono.com
 type: Index
@@ -165,3 +171,72 @@ common:
 maintainers:
   - name: Telefono Team
     email: api@telefono.com
+
+x-enrichment:
+  date: '2026-08-14'
+  status: minimal
+  artifacts_added: 1
+  pass: local-v1
+
+x-coverage:
+  state: none
+  reason: defunct
+  detail: >-
+    telefono.com is a parked domain: its root serves a 346-byte HTML frameset whose
+    only frame points at the domain marketplace domainnames.net, every other path on
+    the host returns 404, and api./developers./status./docs.telefono.com are all
+    NXDOMAIN — including api.telefono.com, the host declared in the servers[] block
+    of every OpenAPI in this repo and in every apis[].baseURL.
+  evidence:
+    - url: https://www.telefono.com/
+      status: 200        # parked holding page framing https://domainnames.net
+    - url: https://www.telefono.com/pricing
+      status: 404
+    - url: https://www.telefono.com/signup
+      status: 404
+    - url: https://www.telefono.com/terms
+      status: 404
+    - url: https://www.telefono.com/.well-known/agent-card.json
+      status: 404
+    - url: https://www.telefono.com/llms.txt
+      status: 404
+    - url: https://api.telefono.com/v1/validate
+      status: 0          # DNS resolution failed (NXDOMAIN @8.8.8.8)
+    - url: https://developers.telefono.com/validation
+      status: 0          # DNS resolution failed (NXDOMAIN @8.8.8.8)
+    - url: https://status.telefono.com
+      status: 0          # DNS resolution failed (NXDOMAIN @8.8.8.8)
+    - url: https://github.com/telefono-api
+      status: 404
+  checked: '2026-08-14'
+
+# ---------------------------------------------------------------------------
+# PROVENANCE WARNING — 2026-08-14 enrichment pass
+#
+# This profile could not be enriched because there is no evidence that the
+# company "Telefono" exists. Every URL asserted in this file was probed on
+# 2026-08-14 and NONE of them resolve to a Telefono product surface (see
+# x-coverage evidence[] above and well-known/telefono-well-known.yml).
+# A web search for a Telefono phone-validation API returns no such provider.
+#
+# The artifacts already in this repo — openapi/ (4 refined + 3 _original specs
+# declaring servers: https://api.telefono.com/v1), collections/, examples/,
+# json-schema/, json-structure/, json-ld/, vocabulary/, rules/, authentication/,
+# agentic-access/ — were NOT harvested from a provider. They match the
+# scaffold-fabrication pattern (bulk pass dated 2026-05-04) and they fail the
+# dead-host test: the single host they all declare is NXDOMAIN.
+#
+# NOTHING WAS DERIVED FROM THOSE SPECS ON THIS PASS. Per the pipeline's
+# ownership check, a contract that cannot be tied to a real provider must not
+# seed derived artifacts, because every derived artifact inherits its
+# provenance. No new pointers were emitted.
+#
+# STILL OUTSTANDING — needs the scaffold-quarantine remediation pass (not done
+# here, because it is a structural change that should be reviewed):
+#   * The common[]/properties[] pointers below still advertise pages that 404
+#     or NXDOMAIN (Documentation, GettingStarted, RateLimits, Pricing, Signup,
+#     TermsOfService, PrivacyPolicy, StatusPage, Support, GitHub). They are
+#     currently scored as present.
+#   * openapi/ and its downstream artifacts should be quarantined to _scaffold/.
+#   * This slug is a candidate for delisting rather than remediation.
+# ---------------------------------------------------------------------------

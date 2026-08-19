@@ -1,0 +1,245 @@
+{
+  "item": [
+    {
+      "id": "67d00596-73f3-49ef-a3b9-9b0555b9b72f",
+      "name": "Validation",
+      "description": {
+        "content": "Phone number validation endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fdd21a2f-4b19-4d21-bad2-56ea360edcb0",
+          "name": "Validate Phone Number",
+          "request": {
+            "name": "Validate Phone Number",
+            "description": {
+              "content": "Validate a single phone number and return its validity status, line type, carrier, country, and formatted versions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "validate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "number",
+                  "value": "<string>",
+                  "description": "(Required) Phone number to validate (any format; include country code for best results)"
+                },
+                {
+                  "disabled": false,
+                  "key": "country_code",
+                  "value": "<string>",
+                  "description": "ISO 3166-1 alpha-2 country code hint for numbers without country prefix (e.g., US, GB)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b73c6c9-5df3-4f84-abe8-2f81c54a7b43",
+              "name": "Validation result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country_code",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"number\": \"string\",\n  \"valid\": true,\n  \"number_type\": \"mobile\",\n  \"e164_format\": \"string\",\n  \"national_format\": \"string\",\n  \"international_format\": \"string\",\n  \"country_code\": \"string\",\n  \"country_name\": \"string\",\n  \"country_prefix\": \"string\",\n  \"carrier\": \"string\",\n  \"line_type\": \"string\",\n  \"is_reachable\": \"unknown\",\n  \"is_virtual\": false,\n  \"calling_code\": 1349\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62b2b5f1-82c8-4a9a-8dc9-c3c5a58264b5",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country_code",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "80dcc7ae-3d43-4b2d-83e9-84af89ec0021",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country_code",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.telefono.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "805f65d4-5850-45f9-ad24-80984bb6dcec",
+    "name": "Telefono Carrier Lookup Batch Validation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Look up carrier and network information for phone numbers worldwide, including MCC, MNC, network type, and real-time HLR lookup for portability-aware detection.\n\nContact Support:\n Name: Telefono Support\n Email: support@telefono.com",
+      "type": "text/plain"
+    }
+  }
+}

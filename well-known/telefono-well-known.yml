@@ -1,0 +1,92 @@
+generated: '2026-08-14'
+method: probed
+source: live HTTP/DNS probe of every host named in apis.yml
+provider: Telefono
+providerId: telefono
+
+# NO POINTER IS EMITTED FOR THIS FILE.
+# Per the enrichment contract, a WellKnown pointer asserts the PROVIDER serves a
+# .well-known surface. Every path below returned 404 (www) or failed DNS resolution
+# (api/developers/status). This file records a verified ABSENCE and must not be
+# wired into apis.yml common[] as a presence.
+
+summary:
+  hosts_probed: 2
+  documents_found: 0
+  note: >-
+    No .well-known document is served on any Telefono host. The only host that
+    resolves at all, www.telefono.com, is a parked-domain holding page that answers
+    404 for every path except "/". See x-coverage in apis.yml.
+
+hosts:
+  - host: https://www.telefono.com
+    resolves: true
+    note: >-
+      Resolves to 15.197.225.128 / 3.33.251.168. Serves a 346-byte HTML frameset
+      whose only frame src is https://domainnames.net — a domain marketplace.
+      This is a parked domain, not a product site.
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /robots.txt
+        status: 404
+      - path: /llms.txt
+        status: 404
+      - path: /openapi.json
+        status: 404
+      - path: /openapi.yaml
+        status: 404
+      - path: /swagger.json
+        status: 404
+      - path: /api-docs
+        status: 404
+
+  - host: https://api.telefono.com
+    resolves: false
+    note: >-
+      NXDOMAIN at 8.8.8.8 — no A record. This is the host declared in the
+      servers[] block of every OpenAPI file in openapi/ and in every
+      apis[].baseURL in apis.yml. It has never been reachable during this probe.
+    documents:
+      - path: /openapi.json
+        status: null
+        error: dns-resolution-failed
+      - path: /openapi.yaml
+        status: null
+        error: dns-resolution-failed
+      - path: /swagger.json
+        status: null
+        error: dns-resolution-failed
+      - path: /v1/openapi.json
+        status: null
+        error: dns-resolution-failed
+      - path: /api-docs
+        status: null
+        error: dns-resolution-failed
+      - path: /docs
+        status: null
+        error: dns-resolution-failed
+      - path: /.well-known/agent-card.json
+        status: null
+        error: dns-resolution-failed
+      - path: /.well-known/agent.json
+        status: null
+        error: dns-resolution-failed
+
+# Additional hosts named in apis.yml that do not resolve (NXDOMAIN, no probe possible):
+unresolvable_hosts:
+  - developers.telefono.com   # every Documentation / GettingStarted / RateLimits pointer
+  - status.telefono.com       # the StatusPage pointer
+  - docs.telefono.com

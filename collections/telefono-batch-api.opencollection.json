@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Telefono Carrier Lookup Batch API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-API-Key",
+      "value": "{{X-API-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Batch",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate Phone Number Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.telefono.com/v1/validate/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Validate up to 100 phone numbers in a single request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

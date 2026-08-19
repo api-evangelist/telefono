@@ -1,0 +1,150 @@
+{
+  "item": [
+    {
+      "id": "fae6e140-f361-4b4d-b5b8-f317aea20f55",
+      "name": "Batch",
+      "description": {
+        "content": "Batch validation for multiple numbers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7c0c0096-3927-438c-876f-45b0d9efd791",
+          "name": "Validate Phone Number Batch",
+          "request": {
+            "name": "Validate Phone Number Batch",
+            "description": {
+              "content": "Validate up to 100 phone numbers in a single request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "validate",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numbers\": [\n    {\n      \"number\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    {\n      \"number\": \"<string>\",\n      \"country_code\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bcb695fe-9140-4e6a-b24d-5e897884d4ff",
+              "name": "Batch validation results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "validate",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"numbers\": [\n    {\n      \"number\": \"<string>\",\n      \"country_code\": \"<string>\"\n    },\n    {\n      \"number\": \"<string>\",\n      \"country_code\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"number\": \"string\",\n      \"valid\": true,\n      \"number_type\": \"voip\",\n      \"e164_format\": \"string\",\n      \"national_format\": \"string\",\n      \"international_format\": \"string\",\n      \"country_code\": \"string\",\n      \"country_name\": \"string\",\n      \"country_prefix\": \"string\",\n      \"carrier\": \"string\",\n      \"line_type\": \"string\",\n      \"is_reachable\": \"unreachable\",\n      \"is_virtual\": true,\n      \"calling_code\": 1996\n    },\n    {\n      \"number\": \"string\",\n      \"valid\": false,\n      \"number_type\": \"shared-cost\",\n      \"e164_format\": \"string\",\n      \"national_format\": \"string\",\n      \"international_format\": \"string\",\n      \"country_code\": \"string\",\n      \"country_name\": \"string\",\n      \"country_prefix\": \"string\",\n      \"carrier\": \"string\",\n      \"line_type\": \"string\",\n      \"is_reachable\": \"risk\",\n      \"is_virtual\": true,\n      \"calling_code\": 6479\n    }\n  ],\n  \"processed\": 8327,\n  \"valid_count\": 9740,\n  \"invalid_count\": 7003\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.telefono.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6358d126-1d8b-49d2-b99a-e3a4b89f013c",
+    "name": "Telefono Carrier Lookup Batch API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Look up carrier and network information for phone numbers worldwide, including MCC, MNC, network type, and real-time HLR lookup for portability-aware detection.\n\nContact Support:\n Name: Telefono Support\n Email: support@telefono.com",
+      "type": "text/plain"
+    }
+  }
+}

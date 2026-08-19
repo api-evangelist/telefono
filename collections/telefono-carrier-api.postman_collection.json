@@ -1,0 +1,245 @@
+{
+  "item": [
+    {
+      "id": "f3e5a2be-ee98-4f38-86cc-a32ccb613679",
+      "name": "Carrier",
+      "description": {
+        "content": "Carrier lookup endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "edfc8e0a-c1d8-4edf-85ff-65b7200d4240",
+          "name": "Lookup Carrier",
+          "request": {
+            "name": "Lookup Carrier",
+            "description": {
+              "content": "Look up carrier information for a phone number. Returns current carrier, network type, MCC/MNC, and roaming status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "carrier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "number",
+                  "value": "<string>",
+                  "description": "(Required) Phone number in E.164 format or with country prefix"
+                },
+                {
+                  "disabled": false,
+                  "key": "hlr",
+                  "value": "<boolean>",
+                  "description": "Perform real-time HLR (Home Location Register) lookup for accurate portability-aware carrier detection (higher cost, additional latency)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d0677c82-2ceb-48b7-8767-746bbb89b33f",
+              "name": "Carrier lookup result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carrier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hlr",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"number\": \"string\",\n  \"carrier_name\": \"string\",\n  \"original_carrier\": \"string\",\n  \"is_ported\": true,\n  \"network_type\": \"umts\",\n  \"mcc\": \"string\",\n  \"mnc\": \"string\",\n  \"country_code\": \"string\",\n  \"roaming\": true,\n  \"hlr_status\": \"unknown\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eafb11ad-5db0-41d3-9700-e7b3e58657f0",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carrier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hlr",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3c728024-0dfd-4f14-bcdf-07aa274716f1",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carrier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hlr",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-API-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.telefono.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-API-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b54d44a6-e4c5-4249-80c5-f1def76a819d",
+    "name": "Telefono Lookup Batch Carrier API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Look up carrier and network information for phone numbers worldwide, including MCC, MNC, network type, and real-time HLR lookup for portability-aware detection.\n\nContact Support:\n Name: Telefono Support\n Email: support@telefono.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -37,7 +37,7 @@ tags:
   - Telecommunications
 created: '2024-01-15'
 modified: '2026-05-19'
-specificationVersion: '0.18'
+specificationVersion: '0.23'
 apis:
 - aid: telefono:telefono-batch-api
   name: Telefono Batch API

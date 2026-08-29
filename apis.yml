@@ -4,6 +4,18 @@ description: >-
   validation, carrier information, line type detection, and number formatting services for developers. The platform
   helps businesses verify user phone numbers, detect fraud, improve deliverability of SMS campaigns, and enrich contact
   data with carrier and geographic information.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: unknown

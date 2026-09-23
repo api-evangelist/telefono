@@ -1,12 +1,11 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Telefono Carrier Lookup Batch Format API
-  description: Look up carrier and network information for phone numbers worldwide, including MCC, MNC, network type, and real-time HLR lookup for portability-aware detection.
+  title: Telefono Number Formatting Format API
+  description: Format and parse phone numbers between E.164, national, international, and RFC3966 formats for any country.
   version: '1.0'
   contact:
     name: Telefono Support
     url: https://www.telefono.com/support
-    email: support@telefono.com
   termsOfService: https://www.telefono.com/terms
 servers:
 - url: https://api.telefono.com/v1

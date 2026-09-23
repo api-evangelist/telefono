@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Telefono Carrier Lookup Batch Validation API
-  description: Look up carrier and network information for phone numbers worldwide, including MCC, MNC, network type, and real-time HLR lookup for portability-aware detection.
+  title: Telefono Phone Validation API
+  description: Validate phone numbers in real-time to determine validity, line type, reachability, and formatting. Supports 232+ countries with E.164 output and carrier information.
   version: '1.0'
   contact:
     name: Telefono Support

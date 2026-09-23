@@ -1,20 +1,30 @@
 {
   "provider": "telefono",
   "sources": [
-    "telefono-batch-api-openapi.yml",
-    "telefono-carrier-api-openapi.yml",
-    "telefono-format-api-openapi.yml",
-    "telefono-validation-api-openapi.yml"
+    "_original/telefono-carrier-openapi.yml",
+    "_original/telefono-format-openapi.yml",
+    "_original/telefono-validation-openapi.yml"
   ],
   "outputs": [
-    "telefono-batch-api-openapi.yml",
     "telefono-carrier-api-openapi.yml",
     "telefono-format-api-openapi.yml",
+    "telefono-batch-api-openapi.yml",
     "telefono-validation-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "telefono-carrier-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "telefono-format-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "telefono-validation-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "telefono-batch-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "telefono-carrier-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "telefono-format-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "telefono-validation-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
